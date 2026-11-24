@@ -16,11 +16,11 @@ async function getKomikById(req, res) {
     try{
         const komik = await db.Komik.findByPk(id);
         if(!komik){
-            return res.status(404).json({error: 'Komik not Found'});
+            return res.status(404).json({error: 'Komik not found'});
         }
         res.status(200).json(komik);
     } catch(err){
-console.error('Error fetching komik by ID:', err.message);
+        console.error('Error fetching komik by ID:', err.message);
         res.status(500).json({error: 'Failed to fetch komik by ID'});
     }
 }
@@ -28,14 +28,13 @@ console.error('Error fetching komik by ID:', err.message);
 async function createKomik(req, res) {
     const { title, description, author } = req.body;
     try{
-        const newKomik = await db.Komik.create({ title, description, author
+        const newKomik = await db.Komik.create({ title, description, author });
         res.status(201).json(newKomik);
     } catch(err){
         console.error('Error creating komik:', err.message);
         res.status(500).json({error: 'Failed to create komik'});
-    })
+    }
 }
-
 
 async function updateKomik(req, res) {
     const {id} = req.params
@@ -55,4 +54,21 @@ async function updateKomik(req, res) {
         res.status(500).json({error: 'Failed to update komik'});
     }
 }
+
+async function deleteKomik(req, res) {
+    const {id} = req.params
+    try{
+        const komik = await db.Komik.findByPk(id);
+        if(!komik){
+            return res.status(404).json({error: 'Komik not found'});
+        }
+        await komik.destroy();
+        res.status(200).json({message: 'Komik deleted successfully'});
+    } catch(err){
+        console.error('Error deleting komik:', err.message);
+        res.status(500).json({error: 'Failed to delete komik'});
+    }
 }
+
+module.exports = {getAllKomik, getKomikById, createKomik,
+    updateKomik, deleteKomik};
