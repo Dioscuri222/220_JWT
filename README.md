@@ -15,3 +15,6 @@
 
 # Delete Komik
 <img width="1570" height="926" alt="Screenshot 2026-11-24 111626" src="https://github.com/user-attachments/assets/4e47c896-4252-44b7-93d6-73f9515f3eb4" />
+
+# GET By Id
+<img width="1571" height="930" alt="image" src="https://github.com/user-attachments/assets/47eb77f1-4b4b-4dfb-9591-7f58b5fb8097" />
